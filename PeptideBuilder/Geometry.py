@@ -43,6 +43,50 @@ class Geo:
         return repr
 
 
+class AceGeo(Geo):
+    """Geometry of ACE N-terminus"""
+
+    def __init__(self):
+        self.CA_N_length = 1.46
+        self.CA_C_length = 1.52
+        self.N_CA_C_angle = 110.8914
+
+        self.C_O_length = 1.23
+        self.CA_C_O_angle = 120.5117
+        self.N_CA_C_O_diangle = 180.0
+
+        self.phi = -120
+        self.psi_im1 = 140
+        self.omega = 180.0
+        self.peptide_bond = 1.33
+        self.CA_C_N_angle = 116.642992978143
+        self.C_N_CA_angle = 121.382215820277
+
+        self.residue_name = "ACE"
+
+
+class NmeGeo(Geo):
+    """Geometry of NME C-terminus"""
+
+    def __init__(self):
+        self.CA_N_length = 1.46
+        self.CA_C_length = 1.52
+        self.N_CA_C_angle = 110.8914
+
+        self.C_O_length = 1.23
+        self.CA_C_O_angle = 120.5117
+        self.N_CA_C_O_diangle = 180.0
+
+        self.phi = -120
+        self.psi_im1 = 140
+        self.omega = 180.0
+        self.peptide_bond = 1.33
+        self.CA_C_N_angle = 116.642992978143
+        self.C_N_CA_angle = 121.382215820277
+
+        self.residue_name = "NME"
+
+
 class GlyGeo(Geo):
     """Geometry of Glycine"""
 
@@ -320,7 +364,7 @@ class LeuGeo(Geo):
     def generateRandomRotamers(self):
         rotamer_bins = [-60, 60, 180]
         tempList = []
-        for i in range(0, 3):
+        for _ in range(0, 3):
             tempList.append(random.choice(rotamer_bins))
         self.inputRotamers(tempList)
 
@@ -437,7 +481,7 @@ class ArgGeo(Geo):
     def generateRandomRotamers(self):
         rotamer_bins = [-60, 60, 180]
         tempList = []
-        for i in range(0, 6):
+        for _ in range(0, 6):
             tempList.append(random.choice(rotamer_bins))
         self.inputRotamers(tempList)
 
@@ -499,7 +543,7 @@ class LysGeo(Geo):
     def generateRandomRotamers(self):
         rotamer_bins = [-60, 60, 180]
         tempList = []
-        for i in range(0, 4):
+        for _ in range(0, 4):
             tempList.append(random.choice(rotamer_bins))
         self.inputRotamers(tempList)
 
@@ -668,7 +712,7 @@ class GluGeo(Geo):
     def generateRandomRotamers(self):
         rotamer_bins = [-60, 60, 180]
         tempList = []
-        for i in range(0, 3):
+        for _ in range(0, 3):
             tempList.append(random.choice(rotamer_bins))
         self.inputRotamers(tempList)
 
@@ -733,7 +777,7 @@ class GlnGeo(Geo):
     def generateRandomRotamers(self):
         rotamer_bins = [-60, 60, 180]
         tempList = []
-        for i in range(0, 3):
+        for _ in range(0, 3):
             tempList.append(random.choice(rotamer_bins))
         self.inputRotamers(tempList)
 
@@ -789,7 +833,7 @@ class MetGeo(Geo):
     def generateRandomRotamers(self):
         rotamer_bins = [-60, 60, 180]
         tempList = []
-        for i in range(0, 3):
+        for _ in range(0, 3):
             tempList.append(random.choice(rotamer_bins))
         self.inputRotamers(tempList)
 
@@ -1141,5 +1185,9 @@ def geometry(AA: str) -> Geo:
         return TyrGeo()
     elif AA == "W":
         return TrpGeo()
+    elif AA == "ACE":
+        return AceGeo()
+    elif AA == "NME":
+        return NmeGeo()
     else:
         return GlyGeo()

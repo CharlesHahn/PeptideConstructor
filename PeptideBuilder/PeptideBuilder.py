@@ -25,6 +25,8 @@ from Bio.PDB.vectors import Vector, rotaxis, calc_dihedral, calc_angle
 import numpy as np
 
 from .Geometry import (
+    AceGeo,
+    NmeGeo,
     AlaGeo,
     ArgGeo,
     AsnGeo,
@@ -138,6 +140,28 @@ def calculateCoordinates(
     D = (D - BV).left_multiply(rot) + BV
 
     return D.get_array()
+
+
+def makeAce(segID: int, N, CA, C, O, geo: Geo) -> Residue:
+    """Creates an ACE capping residue"""
+    res = Residue((" ", segID, " "), "ACE", "    ")
+
+    res.add(N)
+    res.add(CA)
+    res.add(C)
+    res.add(O)
+    return res
+
+
+def makeNme(segID: int, N, CA, C, O, geo: Geo) -> Residue:
+    """Creates a NME capping residue"""
+    res = Residue((" ", segID, " "), "NME", "    ")
+
+    res.add(N)
+    res.add(CA)
+    res.add(C)
+    res.add(O)
+    return res
 
 
 def makeGly(segID: int, N, CA, C, O, geo: Geo) -> Residue:
@@ -1217,6 +1241,10 @@ def make_res_of_type(segID: int, N, CA, C, O, geo: Geo) -> Residue:
         res = makeTyr(segID, N, CA, C, O, geo)
     elif isinstance(geo, TrpGeo):
         res = makeTrp(segID, N, CA, C, O, geo)
+    elif isinstance(geo, AceGeo):
+        res = makeAce(segID, N, CA, C, O, geo)
+    elif isinstance(geo, NmeGeo):
+        res = makeNme(segID, N, CA, C, O, geo)
     else:
         res = makeGly(segID, N, CA, C, O, geo)
 
@@ -1253,7 +1281,13 @@ def initialize_res(residue: Union[Geo, str]) -> Structure:
     )
 
     N = Atom("N", N_coord, 0.0, 1.0, " ", " N", 0, "N")
-    CA = Atom("CA", CA_coord, 0.0, 1.0, " ", " CA", 0, "C")
+
+    # Check if the peptide is capped or not
+    if geo.residue_name == "ACE":
+        CA = Atom("CH3", CA_coord, 0.0, 1.0, " ", " CH3", 0, "C")
+    else:
+        CA = Atom("CA", CA_coord, 0.0, 1.0, " ", " CA", 0, "C")
+
     C = Atom("C", C_coord, 0.0, 1.0, " ", " C", 0, "C")
 
     ##Create Carbonyl atom (to be moved later)
@@ -1279,20 +1313,24 @@ def initialize_res(residue: Union[Geo, str]) -> Structure:
     return struc
 
 
-def getReferenceResidue(structure: Structure) -> Residue:
-    """Returns the last residue of chain A model 0 of the given structure.
+def getReferenceResidue(structure: Structure, index) -> Residue:
+    """Returns the first (index = 0) or last (index = -1) residue of chain A model 0 of the given structure.
 
     This function is a helper function that should not normally be called
     directly."""
 
     # If the following line doesn't work we're in trouble.
     # Likely initialize_res() wasn't called.
-    resRef = structure[0]["A"].child_list[-1]
+    resRef = structure[0]["A"].child_list[index]
+    name = resRef.get_resname()
 
     # If the residue is not an amino acid we're in trouble.
     # Likely somebody is trying to append residues to an existing
     # structure that has non-amino-acid molecules in the chain.
-    assert is_aa(resRef)
+    if name in ["ACE", "NME"]:
+        pass
+    else:
+        assert is_aa(resRef)
 
     return resRef
 
@@ -1304,7 +1342,7 @@ def add_residue_from_geo(structure: Structure, geo: Geo) -> Structure:
 
     This function is a helper function and should not normally be called
     directly. Call add_residue() instead."""
-    resRef = getReferenceResidue(structure)
+    resRef = getReferenceResidue(structure, -1)
     AA = geo.residue_name
     segID = resRef.get_id()[1]
     segID += 1
@@ -1322,13 +1360,18 @@ def add_residue_from_geo(structure: Structure, geo: Geo) -> Structure:
     psi_im1 = geo.psi_im1
     omega = geo.omega
 
+    if resRef.get_resname() == "ACE":
+        CA_name = "CH3"
+    else:
+        CA_name = "CA"
+
     N_coord = calculateCoordinates(
-        resRef["N"], resRef["CA"], resRef["C"], peptide_bond, CA_C_N_angle, psi_im1
+        resRef["N"], resRef[CA_name], resRef["C"], peptide_bond, CA_C_N_angle, psi_im1
     )
     N = Atom("N", N_coord, 0.0, 1.0, " ", " N", 0, "N")
 
     CA_coord = calculateCoordinates(
-        resRef["CA"], resRef["C"], N, CA_N_length, C_N_CA_angle, omega
+        resRef[CA_name], resRef["C"], N, CA_N_length, C_N_CA_angle, omega
     )
     CA = Atom("CA", CA_coord, 0.0, 1.0, " ", " CA", 0, "C")
 
@@ -1345,18 +1388,24 @@ def add_residue_from_geo(structure: Structure, geo: Geo) -> Structure:
     )
     O = Atom("O", carbonyl, 0.0, 1.0, " ", " O", 0, "O")
 
+    if geo.residue_name == "NME":
+        CA = Atom("CH3", CA_coord, 0.0, 1.0, " ", " CH3", 0, "C")
+        new_CA_name = "CH3"
+    else:
+        new_CA_name = "CA"
+
     res = make_res_of_type(segID, N, CA, C, O, geo)
 
     resRef["O"].set_coord(
         calculateCoordinates(
-            res["N"], resRef["CA"], resRef["C"], C_O_length, CA_C_O_angle, 180.0
+            res["N"], resRef[CA_name], resRef["C"], C_O_length, CA_C_O_angle, 180.0
         )
     )
 
     ghost = Atom(
         "N",
         calculateCoordinates(
-            res["N"], res["CA"], res["C"], peptide_bond, CA_C_N_angle, psi_im1
+            res["N"], res[new_CA_name], res["C"], peptide_bond, CA_C_N_angle, psi_im1
         ),
         0.0,
         0.0,
@@ -1367,24 +1416,42 @@ def add_residue_from_geo(structure: Structure, geo: Geo) -> Structure:
     )
     res["O"].set_coord(
         calculateCoordinates(
-            res["N"], res["CA"], res["C"], C_O_length, CA_C_O_angle, 180.0
+            res["N"], res[new_CA_name], res["C"], C_O_length, CA_C_O_angle, 180.0
         )
     )
 
     structure[0]["A"].add(res)
+
+    if geo.residue_name == "NME":
+        if structure[0]["A"][1].get_resname() == "ACE":
+            del structure[0]["A"][1]["N"]
+        del structure[0]["A"][segID]["C"]
+        del structure[0]["A"][segID]["O"]
+
     return structure
 
 
-def make_extended_structure(AA_chain: str) -> Structure:
+def make_extended_structure(AA_chain: str, capping: bool = False) -> Structure:
     """Place a sequence of amino acids into a peptide in the extended
     conformation. The argument AA_chain holds the sequence of amino
-    acids to be used."""
-    geo = geometry(AA_chain[0])
+    acids to be used, while capping can be set to True in order to
+    cap the peptide with both ACE and NME residues."""
+    if capping:
+        geo = geometry("ACE")
+        start = 0
+    else:
+        geo = geometry(AA_chain[0])
+        start = 1
+
     struc = initialize_res(geo)
 
-    for i in range(1, len(AA_chain)):
+    for i in range(start, len(AA_chain)):
         AA = AA_chain[i]
         geo = geometry(AA)
+        add_residue(struc, geo)
+
+    if capping:
+        geo = geometry("NME")
         add_residue(struc, geo)
 
     return struc
@@ -1455,12 +1522,12 @@ def make_structure_from_geos(geos: List[Geo]) -> Structure:
 def add_terminal_OXT(structure: Structure, C_OXT_length: float = 1.23) -> Structure:
     """Adds a terminal oxygen atom ('OXT') to the last residue of chain A model 0 of the given structure, and returns the new structure. The OXT atom object will be contained in the last residue object of the structure.
 
-This function should be used only when the structure object is completed and no further residues need to be appended."""
+    This function should be used only when the structure object is completed and no further residues need to be appended."""
 
     rad = 180.0 / math.pi
 
     # obtain last residue infomation
-    resRef = getReferenceResidue(structure)
+    resRef = getReferenceResidue(structure, -1)
     N_resRef = resRef["N"]
     CA_resRef = resRef["CA"]
     C_resRef = resRef["C"]
@@ -1486,4 +1553,8 @@ This function should be used only when the structure object is completed and no 
 
     # modify last residue of the structure to contain the OXT atom
     resRef.add(OXT)
+
+    if structure[0]["A"][1].get_resname() == "ACE":
+        del structure[0]["A"][1]["N"]
+
     return structure
