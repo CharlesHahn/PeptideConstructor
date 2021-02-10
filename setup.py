@@ -37,7 +37,9 @@ setup(
     platforms="Tested on Mac OS X and Windows 10",
     packages=["PeptideBuilder"],
     install_requires=INSTALL_REQUIRES,
-    extras_require={"test": TEST_REQUIRES + INSTALL_REQUIRES,},
+    extras_require={
+        "test": TEST_REQUIRES + INSTALL_REQUIRES,
+    },
     classifiers=[
         # Trove classifiers
         # (https://pypi.python.org/pypi?%3Aaction=list_classifiers)
