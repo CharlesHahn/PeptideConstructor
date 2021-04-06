@@ -43,50 +43,6 @@ class Geo:
         return repr
 
 
-class AceGeo(Geo):
-    """Geometry of ACE N-terminus"""
-
-    def __init__(self):
-        self.CA_N_length = 1.46
-        self.CA_C_length = 1.52
-        self.N_CA_C_angle = 110.8914
-
-        self.C_O_length = 1.23
-        self.CA_C_O_angle = 120.5117
-        self.N_CA_C_O_diangle = 180.0
-
-        self.phi = -120
-        self.psi_im1 = 140
-        self.omega = 180.0
-        self.peptide_bond = 1.33
-        self.CA_C_N_angle = 116.642992978143
-        self.C_N_CA_angle = 121.382215820277
-
-        self.residue_name = "ACE"
-
-
-class NmeGeo(Geo):
-    """Geometry of NME C-terminus"""
-
-    def __init__(self):
-        self.CA_N_length = 1.46
-        self.CA_C_length = 1.52
-        self.N_CA_C_angle = 110.8914
-
-        self.C_O_length = 1.23
-        self.CA_C_O_angle = 120.5117
-        self.N_CA_C_O_diangle = 180.0
-
-        self.phi = -120
-        self.psi_im1 = 140
-        self.omega = 180.0
-        self.peptide_bond = 1.33
-        self.CA_C_N_angle = 116.642992978143
-        self.C_N_CA_angle = 121.382215820277
-
-        self.residue_name = "NME"
-
-
 class GlyGeo(Geo):
     """Geometry of Glycine"""
 
@@ -107,6 +63,22 @@ class GlyGeo(Geo):
         self.C_N_CA_angle = 121.382215820277
 
         self.residue_name = "G"
+
+
+class AceGeo(GlyGeo):
+    """Geometry of ACE N-terminus"""
+
+    def __init__(self):
+        super(AceGeo, self).__init__()
+        self.residue_name = "ACE"
+
+
+class NmeGeo(GlyGeo):
+    """Geometry of NME C-terminus"""
+
+    def __init__(self):
+        super(NmeGeo, self).__init__()
+        self.residue_name = "NME"
 
 
 class AlaGeo(Geo):
