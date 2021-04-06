@@ -155,23 +155,15 @@ def makeGly(segID: int, N, CA, C, O, geo: Geo) -> Residue:
 
 def makeAce(segID: int, N, CA, C, O, geo: AceGeo) -> Residue:
     """Creates an ACE capping residue"""
-    res = Residue((" ", segID, " "), "ACE", "    ")
-
-    res.add(N)
-    res.add(CA)
-    res.add(C)
-    res.add(O)
+    res = makeGly(segID, N, CA, C, O, geo)
+    res.resname = "ACE"
     return res
 
 
 def makeNme(segID: int, N, CA, C, O, geo: NmeGeo) -> Residue:
     """Creates a NME capping residue"""
-    res = Residue((" ", segID, " "), "NME", "    ")
-
-    res.add(N)
-    res.add(CA)
-    res.add(C)
-    res.add(O)
+    res = makeGly(segID, N, CA, C, O, geo)
+    res.resname = "NME"
     return res
 
 
