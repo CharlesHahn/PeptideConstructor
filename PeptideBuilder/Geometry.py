@@ -1117,7 +1117,11 @@ def geometry(AA: str) -> Geo:
     The amino acid needs to be specified by its single-letter
     code. If an invalid code is specified, the function
     returns the geometry of Glycine."""
-    if AA == "G":
+    if AA == "ACE":
+        return AceGeo()
+    elif AA == "NME":
+        return NmeGeo()
+    elif AA == "G":
         return GlyGeo()
     elif AA == "A":
         return AlaGeo()
@@ -1157,9 +1161,5 @@ def geometry(AA: str) -> Geo:
         return TyrGeo()
     elif AA == "W":
         return TrpGeo()
-    elif AA == "ACE":
-        return AceGeo()
-    elif AA == "NME":
-        return NmeGeo()
     else:
         return GlyGeo()
