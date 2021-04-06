@@ -25,8 +25,6 @@ from Bio.PDB.vectors import Vector, rotaxis, calc_dihedral, calc_angle
 import numpy as np
 
 from .Geometry import (
-    AceGeo,
-    NmeGeo,
     AlaGeo,
     ArgGeo,
     AsnGeo,
@@ -47,6 +45,8 @@ from .Geometry import (
     TrpGeo,
     TyrGeo,
     ValGeo,
+    AceGeo,
+    NmeGeo,
     geometry,
     Geo,
 )
@@ -142,7 +142,18 @@ def calculateCoordinates(
     return D.get_array()
 
 
-def makeAce(segID: int, N, CA, C, O, geo: Geo) -> Residue:
+def makeGly(segID: int, N, CA, C, O, geo: Geo) -> Residue:
+    """Creates a Glycine residue"""
+    res = Residue((" ", segID, " "), "GLY", "    ")
+
+    res.add(N)
+    res.add(CA)
+    res.add(C)
+    res.add(O)
+    return res
+
+
+def makeAce(segID: int, N, CA, C, O, geo: AceGeo) -> Residue:
     """Creates an ACE capping residue"""
     res = Residue((" ", segID, " "), "ACE", "    ")
 
@@ -153,20 +164,9 @@ def makeAce(segID: int, N, CA, C, O, geo: Geo) -> Residue:
     return res
 
 
-def makeNme(segID: int, N, CA, C, O, geo: Geo) -> Residue:
+def makeNme(segID: int, N, CA, C, O, geo: NmeGeo) -> Residue:
     """Creates a NME capping residue"""
     res = Residue((" ", segID, " "), "NME", "    ")
-
-    res.add(N)
-    res.add(CA)
-    res.add(C)
-    res.add(O)
-    return res
-
-
-def makeGly(segID: int, N, CA, C, O, geo: Geo) -> Residue:
-    """Creates a Glycine residue"""
-    res = Residue((" ", segID, " "), "GLY", "    ")
 
     res.add(N)
     res.add(CA)
@@ -1201,7 +1201,11 @@ def makeTrp(segID: int, N, CA, C, O, geo: TrpGeo) -> Residue:
 
 
 def make_res_of_type(segID: int, N, CA, C, O, geo: Geo) -> Residue:
-    if isinstance(geo, GlyGeo):
+    if isinstance(geo, AceGeo):
+        res = makeAce(segID, N, CA, C, O, geo)
+    elif isinstance(geo, NmeGeo):
+        res = makeNme(segID, N, CA, C, O, geo)
+    elif isinstance(geo, GlyGeo):
         res = makeGly(segID, N, CA, C, O, geo)
     elif isinstance(geo, AlaGeo):
         res = makeAla(segID, N, CA, C, O, geo)
@@ -1241,13 +1245,8 @@ def make_res_of_type(segID: int, N, CA, C, O, geo: Geo) -> Residue:
         res = makeTyr(segID, N, CA, C, O, geo)
     elif isinstance(geo, TrpGeo):
         res = makeTrp(segID, N, CA, C, O, geo)
-    elif isinstance(geo, AceGeo):
-        res = makeAce(segID, N, CA, C, O, geo)
-    elif isinstance(geo, NmeGeo):
-        res = makeNme(segID, N, CA, C, O, geo)
     else:
         res = makeGly(segID, N, CA, C, O, geo)
-
     return res
 
 
@@ -1256,7 +1255,7 @@ def initialize_res(residue: Union[Geo, str]) -> Structure:
     geometry of the amino acid are determined by the argument, which has to be
     either a geometry object or a single-letter amino acid code.
     The amino acid will be placed into chain A of model 0."""
-
+    
     if isinstance(residue, Geo):
         geo = residue
     elif isinstance(residue, str):
@@ -1299,9 +1298,9 @@ def initialize_res(residue: Union[Geo, str]) -> Structure:
         N, CA, C, C_O_length, CA_C_O_angle, N_CA_C_O_diangle
     )
     O = Atom("O", carbonyl, 0.0, 1.0, " ", " O", 0, "O")
-
+    
     res = make_res_of_type(segID, N, CA, C, O, geo)
-
+   
     cha = Chain("A")
     cha.add(res)
 
@@ -1364,7 +1363,7 @@ def add_residue_from_geo(structure: Structure, geo: Geo) -> Structure:
         CA_name = "CH3"
     else:
         CA_name = "CA"
-
+    
     N_coord = calculateCoordinates(
         resRef["N"], resRef[CA_name], resRef["C"], peptide_bond, CA_C_N_angle, psi_im1
     )
