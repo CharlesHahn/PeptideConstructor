@@ -107,6 +107,15 @@ class AlaGeo(Geo):
         self.residue_name = "A"
 
 
+class DAlaGeo(AlaGeo):
+    """Geometry of D-Alanin"""
+
+    def __init__(self):
+        super(DAlaGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -122.6860
+        self.residue_name = "a"
+
+
 class SerGeo(Geo):
     """Geometry of Serine"""
 
@@ -144,6 +153,15 @@ class SerGeo(Geo):
             self.N_CA_CB_OG_diangle = -63.3
 
 
+class DSerGeo(SerGeo):
+    """Geometry of D-Serine"""
+
+    def __init__(self):
+        super(DSerGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -122.6618
+        self.residue_name = "s"
+
+
 class CysGeo(Geo):
     """Geometry of Cystine"""
 
@@ -179,6 +197,15 @@ class CysGeo(Geo):
         except IndexError:
             print("Input Rotamers List: not long enough")
             self.N_CA_CB_SG_diangle = -62.2
+
+
+class DCysGeo(CysGeo):
+    """Geometry of D-Cystine"""
+
+    def __init__(self):
+        super(DCysGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -122.5037
+        self.residue_name = "c"
 
 
 class ValGeo(Geo):
@@ -222,6 +249,15 @@ class ValGeo(Geo):
             print("Input Rotamers List: not long enough")
             self.N_CA_CB_CG1_diangle = 177.2
             self.N_CA_CB_CG2_dianlge = -63.3
+
+
+class DValGeo(ValGeo):
+    """Geometry of D-Valine"""
+
+    def __init__(self):
+        super(DValGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -123.2347
+        self.residue_name = "v"
 
 
 class IleGeo(Geo):
@@ -285,6 +321,15 @@ class IleGeo(Geo):
 ##        self.inputRotamers(tempList)
 
 
+class DIleGeo(IleGeo):
+    """Geometry of D-Isoleucine"""
+
+    def __init__(self):
+        super(DIleGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -123.2347
+        self.residue_name = "i"
+
+
 class LeuGeo(Geo):
     """Geometry of Leucine"""
 
@@ -341,6 +386,15 @@ class LeuGeo(Geo):
         self.inputRotamers(tempList)
 
 
+class DLeuGeo(LeuGeo):
+    """Geometry of D-Leucine"""
+
+    def __init__(self):
+        super(DLeuGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -122.4948
+        self.residue_name = "l"
+
+
 class ThrGeo(Geo):
     """Geometry of Threonine"""
 
@@ -382,6 +436,15 @@ class ThrGeo(Geo):
             print("Input Rotamers List: not long enough")
             self.N_CA_CB_OG1_diangle = -60.3
             self.N_CA_CB_OG2_diangle = 60.0
+
+
+class DThrGeo(ThrGeo):
+    """Geometry of D-Threonine"""
+
+    def __init__(self):
+        super(DThrGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -123.0953
+        self.residue_name = "t"
 
 
 class ArgGeo(Geo):
@@ -458,6 +521,15 @@ class ArgGeo(Geo):
         self.inputRotamers(tempList)
 
 
+class DArgGeo(ArgGeo):
+    """Geometry of D-Arginine"""
+
+    def __init__(self):
+        super(DArgGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -122.76
+        self.residue_name = "r"
+
+
 class LysGeo(Geo):
     """Geometry of Lysine"""
 
@@ -520,6 +592,15 @@ class LysGeo(Geo):
         self.inputRotamers(tempList)
 
 
+class DLysGeo(LysGeo):
+    """Geometry of D-Lysine"""
+
+    def __init__(self):
+        super(DLysGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -122.76
+        self.residue_name = "k"
+
+
 class AspGeo(Geo):
     """Geometry of Aspartic Acid"""
 
@@ -572,6 +653,15 @@ class AspGeo(Geo):
             self.CA_CB_CG_OD2_diangle = 180 + self.CA_CB_CG_OD1_diangle
 
 
+class DAspGeo(AspGeo):
+    """Geometry of D-Aspartic Acid"""
+
+    def __init__(self):
+        super(DAspGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -122.82
+        self.residue_name = "d"
+
+
 class AsnGeo(Geo):
     """Geometry of Asparagine"""
 
@@ -622,6 +712,15 @@ class AsnGeo(Geo):
             self.N_CA_CB_CG_diangle = -65.5
             self.CA_CB_CG_OD1_diangle = -58.3
             self.CA_CB_CG_ND2_diangle = 180.0 + self.CA_CB_CG_OD1_diangle
+
+
+class DAsnGeo(AsnGeo):
+    """Geometry of D-Asparagine"""
+
+    def __init__(self):
+        super(DAsnGeo).__init__()
+        self.N_C_CA_CB_diangle = -123.2254
+        self.residue_name = "n"
 
 
 class GluGeo(Geo):
@@ -689,6 +788,15 @@ class GluGeo(Geo):
         self.inputRotamers(tempList)
 
 
+class DGluGeo(GluGeo):
+    """Geometry of D-Glutamic Acid"""
+
+    def __init__(self):
+        super(DGluGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -122.8702
+        self.residue_name = "e"
+
+
 class GlnGeo(Geo):
     """Geometry of Glutamine"""
 
@@ -754,6 +862,15 @@ class GlnGeo(Geo):
         self.inputRotamers(tempList)
 
 
+class DGlnGeo(GlnGeo):
+    """Geometry of D-Glutamine"""
+
+    def __init__(self):
+        super(DGlnGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -122.8134
+        self.residue_name = "q"
+
+
 class MetGeo(Geo):
     """Geometry of Methionine"""
 
@@ -808,6 +925,15 @@ class MetGeo(Geo):
         for _ in range(0, 3):
             tempList.append(random.choice(rotamer_bins))
         self.inputRotamers(tempList)
+
+
+class DMetGeo(MetGeo):
+    """Geometry of D-Methionine"""
+
+    def __init__(self):
+        super(DMetGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -122.6733
+        self.residue_name = "m"
 
 
 class HisGeo(Geo):
@@ -870,6 +996,15 @@ class HisGeo(Geo):
             self.CA_CB_CG_CD2_diangle = 180.0 + self.CA_CB_CG_ND1_diangle
 
 
+class DHisGeo(HisGeo):
+    """Geometry of D-Histidine"""
+
+    def __init__(self):
+        super(DHisGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -122.6711
+        self.residue_name = "h"
+
+
 class ProGeo(Geo):
     """Geometry of Proline"""
 
@@ -902,6 +1037,15 @@ class ProGeo(Geo):
         self.CA_CB_CG_CD_diangle = -34.8
 
         self.residue_name = "P"
+
+
+class DProGeo(ProGeo):
+    """Geometry of D-Proline"""
+
+    def __init__(self):
+        super(DProGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -115.2975
+        self.residue_name = "p"
 
 
 class PheGeo(Geo):
@@ -966,6 +1110,15 @@ class PheGeo(Geo):
             self.N_CA_CB_CG_diangle = -64.7
             self.CA_CB_CG_CD1_diangle = 93.3
             self.CA_CB_CG_CD2_diangle = self.CA_CB_CG_CD1_diangle - 180.0
+
+
+class DPheGeo(PheGeo):
+    """Geometry of D-Phenylalanine"""
+
+    def __init__(self):
+        super(DPheGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -122.6054
+        self.residue_name = "f"
 
 
 class TyrGeo(Geo):
@@ -1034,6 +1187,15 @@ class TyrGeo(Geo):
             self.N_CA_CB_CG_diangle = -64.3
             self.CA_CB_CG_CD1_diangle = 93.1
             self.CA_CB_CG_CD2_diangle = self.CA_CB_CG_CD1_diangle + 180.0
+
+
+class DTyrGeo(TyrGeo):
+    """Geometry of D-Tyrosine"""
+
+    def __init__(self):
+        super(DTyrGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -122.6023
+        self.residue_name = "y"
 
 
 class TrpGeo(Geo):
@@ -1112,6 +1274,15 @@ class TrpGeo(Geo):
             self.CA_CB_CG_CD2_diangle = self.CA_CB_CG_CD1_diangle - 180.0
 
 
+class DTrpGeo(TrpGeo):
+    """Geometry of D-Tryptophan"""
+
+    def __init__(self):
+        super(DTrpGeo, self).__init__()
+        self.N_C_CA_CB_diangle = -122.6112
+        self.residue_name = "w"
+
+
 def geometry(AA: str) -> Geo:
     """Generates the geometry of the requested amino acid.
     The amino acid needs to be specified by its single-letter
@@ -1125,41 +1296,83 @@ def geometry(AA: str) -> Geo:
         return GlyGeo()
     elif AA == "A":
         return AlaGeo()
+    elif AA == "a":
+        return DAlaGeo()
     elif AA == "S":
         return SerGeo()
+    elif AA == "s":
+        return DSerGeo()
     elif AA == "C":
         return CysGeo()
+    elif AA == "c":
+        return DCysGeo()
     elif AA == "V":
         return ValGeo()
+    elif AA == "v":
+        return DValGeo()
     elif AA == "I":
         return IleGeo()
+    elif AA == "i":
+        return DIleGeo()
     elif AA == "L":
         return LeuGeo()
+    elif AA == "l":
+        return DLeuGeo()
     elif AA == "T":
         return ThrGeo()
+    elif AA == "t":
+        return DThrGeo()
     elif AA == "R":
         return ArgGeo()
+    elif AA == "r":
+        return DArgGeo()
     elif AA == "K":
         return LysGeo()
+    elif AA == "k":
+        return DLysGeo()
     elif AA == "D":
         return AspGeo()
+    elif AA == "d":
+        return DAspGeo()
     elif AA == "E":
         return GluGeo()
+    elif AA == "e":
+        return DGluGeo()
     elif AA == "N":
         return AsnGeo()
+    elif AA == "n":
+        return DAsnGeo()
     elif AA == "Q":
         return GlnGeo()
+    elif AA == "q":
+        return DGlnGeo()
     elif AA == "M":
         return MetGeo()
+    elif AA == "m":
+        return DMetGeo()
     elif AA == "H":
         return HisGeo()
+    elif AA == "h":
+        return DHisGeo()
     elif AA == "P":
         return ProGeo()
+    elif AA == "p":
+        return DProGeo()
     elif AA == "F":
         return PheGeo()
+    elif AA == "f":
+        return DPheGeo()
     elif AA == "Y":
         return TyrGeo()
+    elif AA == "y":
+        return DTyrGeo()
     elif AA == "W":
         return TrpGeo()
+    elif AA == "w":
+        return DTrpGeo()
     else:
-        return GlyGeo()
+        ## unrecognized AA will be treat as Gly
+        # import warnings
+        # warnings.warn("Unrecognized amino acid " + AA )
+        # return GlyGeo()
+        raise ValueError("Invalid amino acid argument: ", AA)

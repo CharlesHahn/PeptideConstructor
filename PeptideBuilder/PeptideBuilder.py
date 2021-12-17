@@ -49,6 +49,25 @@ from Geometry import (
     NmeGeo,
     geometry,
     Geo,
+    DAlaGeo,
+    DArgGeo,
+    DAsnGeo,
+    DAspGeo,
+    DCysGeo,
+    DGlnGeo,
+    DGluGeo,
+    DHisGeo,
+    DIleGeo,
+    DLeuGeo,
+    DLysGeo,
+    DMetGeo,
+    DPheGeo,
+    DProGeo,
+    DSerGeo,
+    DThrGeo,
+    DTrpGeo,
+    DTyrGeo,
+    DValGeo,
 )
 
 
@@ -1199,43 +1218,43 @@ def make_res_of_type(segID: int, N, CA, C, O, geo: Geo) -> Residue:
         res = makeNme(segID, N, CA, C, O, geo)
     elif isinstance(geo, GlyGeo):
         res = makeGly(segID, N, CA, C, O, geo)
-    elif isinstance(geo, AlaGeo):
+    elif isinstance(geo, AlaGeo) or isinstance(geo, DAlaGeo):
         res = makeAla(segID, N, CA, C, O, geo)
-    elif isinstance(geo, SerGeo):
+    elif isinstance(geo, SerGeo) or isinstance(geo, DSerGeo):
         res = makeSer(segID, N, CA, C, O, geo)
-    elif isinstance(geo, CysGeo):
+    elif isinstance(geo, CysGeo) or isinstance(geo, DCysGeo):
         res = makeCys(segID, N, CA, C, O, geo)
-    elif isinstance(geo, ValGeo):
+    elif isinstance(geo, ValGeo) or isinstance(geo, DValGeo):
         res = makeVal(segID, N, CA, C, O, geo)
-    elif isinstance(geo, IleGeo):
+    elif isinstance(geo, IleGeo) or isinstance(geo, DIleGeo):
         res = makeIle(segID, N, CA, C, O, geo)
-    elif isinstance(geo, LeuGeo):
+    elif isinstance(geo, LeuGeo) or isinstance(geo, DLeuGeo):
         res = makeLeu(segID, N, CA, C, O, geo)
-    elif isinstance(geo, ThrGeo):
+    elif isinstance(geo, ThrGeo) or isinstance(geo, DThrGeo):
         res = makeThr(segID, N, CA, C, O, geo)
-    elif isinstance(geo, ArgGeo):
+    elif isinstance(geo, ArgGeo) or isinstance(geo, DArgGeo):
         res = makeArg(segID, N, CA, C, O, geo)
-    elif isinstance(geo, LysGeo):
+    elif isinstance(geo, LysGeo) or isinstance(geo, DLysGeo):
         res = makeLys(segID, N, CA, C, O, geo)
-    elif isinstance(geo, AspGeo):
+    elif isinstance(geo, AspGeo) or isinstance(geo, DAspGeo):
         res = makeAsp(segID, N, CA, C, O, geo)
-    elif isinstance(geo, GluGeo):
+    elif isinstance(geo, GluGeo) or isinstance(geo, DGluGeo):
         res = makeGlu(segID, N, CA, C, O, geo)
-    elif isinstance(geo, AsnGeo):
+    elif isinstance(geo, AsnGeo) or isinstance(geo, DAsnGeo):
         res = makeAsn(segID, N, CA, C, O, geo)
-    elif isinstance(geo, GlnGeo):
+    elif isinstance(geo, GlnGeo) or isinstance(geo, DGlnGeo):
         res = makeGln(segID, N, CA, C, O, geo)
-    elif isinstance(geo, MetGeo):
+    elif isinstance(geo, MetGeo) or isinstance(geo, DMetGeo):
         res = makeMet(segID, N, CA, C, O, geo)
-    elif isinstance(geo, HisGeo):
+    elif isinstance(geo, HisGeo) or isinstance(geo, DHisGeo):
         res = makeHis(segID, N, CA, C, O, geo)
-    elif isinstance(geo, ProGeo):
+    elif isinstance(geo, ProGeo) or isinstance(geo, DProGeo):
         res = makePro(segID, N, CA, C, O, geo)
-    elif isinstance(geo, PheGeo):
+    elif isinstance(geo, PheGeo) or isinstance(geo, DPheGeo):
         res = makePhe(segID, N, CA, C, O, geo)
-    elif isinstance(geo, TyrGeo):
+    elif isinstance(geo, TyrGeo) or isinstance(geo, DTyrGeo):
         res = makeTyr(segID, N, CA, C, O, geo)
-    elif isinstance(geo, TrpGeo):
+    elif isinstance(geo, TrpGeo) or isinstance(geo, DTrpGeo):
         res = makeTrp(segID, N, CA, C, O, geo)
     else:
         res = makeGly(segID, N, CA, C, O, geo)
@@ -1247,7 +1266,7 @@ def initialize_res(residue: Union[Geo, str]) -> Structure:
     geometry of the amino acid are determined by the argument, which has to be
     either a geometry object or a single-letter amino acid code.
     The amino acid will be placed into chain A of model 0."""
-    
+
     if isinstance(residue, Geo):
         geo = residue
     elif isinstance(residue, str):
@@ -1290,9 +1309,9 @@ def initialize_res(residue: Union[Geo, str]) -> Structure:
         N, CA, C, C_O_length, CA_C_O_angle, N_CA_C_O_diangle
     )
     O = Atom("O", carbonyl, 0.0, 1.0, " ", " O", 0, "O")
-    
+
     res = make_res_of_type(segID, N, CA, C, O, geo)
-   
+
     cha = Chain("A")
     cha.add(res)
 
@@ -1355,7 +1374,7 @@ def add_residue_from_geo(structure: Structure, geo: Geo) -> Structure:
         CA_name = "CH3"
     else:
         CA_name = "CA"
-    
+
     N_coord = calculateCoordinates(
         resRef["N"], resRef[CA_name], resRef["C"], peptide_bond, CA_C_N_angle, psi_im1
     )
