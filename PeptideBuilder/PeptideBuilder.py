@@ -24,7 +24,7 @@ from Bio.PDB.Structure import Structure
 from Bio.PDB.vectors import Vector, rotaxis, calc_dihedral, calc_angle
 import numpy as np
 
-from .Geometry import (
+from Geometry import (
     AlaGeo,
     ArgGeo,
     AsnGeo,
