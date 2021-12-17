@@ -1,3 +1,9 @@
+# DL-PeptideBuilder: A simple Python library to generate model peptides which chould contain D amino acids.
+
+
+The original README is down here.
+---
+
 # PeptideBuilder: A simple Python library to generate model peptides.
 
 *Matthew Z. Tien, Dariya K. Sydykova, Austin G. Meyer, and Claus O. Wilke*
