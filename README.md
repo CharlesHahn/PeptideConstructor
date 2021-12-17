@@ -1,10 +1,11 @@
 # DL-PeptideBuilder: A simple Python library to generate model (DL-)peptides.
 
 Still working on this:
-  - add D amino acids support
-  - add command-line interface support
-  - add support of adding amino acids to existing protein
-  - add energy minimization or conformation optimization support
+- [x] add D amino acids support
+- [ ] add command-line interface support
+- [ ] add support of adding amino acids to existing protein
+- [ ] add energy minimization or conformation optimization support
+- [ ] further more, add DNA/RNA support
 
 
 This repo is based on Lun4m/PeptideBuilder.git and clauswilke/PeptideBuilder.git. Cite their original paper.

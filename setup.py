@@ -27,21 +27,21 @@ for line in init:
 setup(
     name="PeptideBuilder",
     version=__version__,
-    author="Matthew Z. Tien",
-    author_email="Matthew.Tien89@gmail.com",
-    description="Create peptide PDB files with specified geometry",
+    author="DuIvy, Charles Hahn",
+    author_email="",
+    description="Create (DL-)peptide PDB files with specified geometry",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/clauswilke/PeptideBuilder",
-    download_url="https://github.com/clauswilke/PeptideBuilder/releases",
-    platforms="Tested on Mac OS X and Windows 10",
+    url="https://github.com/CharlesHahn/DL-PeptideBuilder",
+    download_url="https://github.com/CharlesHahn/DL-PeptideBuilder/releases",
+    platforms="Tested on Windows 10 but not fully tested",
     packages=["PeptideBuilder"],
     install_requires=INSTALL_REQUIRES,
     extras_require={"test": TEST_REQUIRES + INSTALL_REQUIRES,},
     classifiers=[
         # Trove classifiers
         # (https://pypi.python.org/pypi?%3Aaction=list_classifiers)
-        "Development Status :: 5 - Production/Stable",
+        "Development Status :: 1 - Planning",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
