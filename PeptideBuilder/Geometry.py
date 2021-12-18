@@ -718,7 +718,7 @@ class DAsnGeo(AsnGeo):
     """Geometry of D-Asparagine"""
 
     def __init__(self):
-        super(DAsnGeo).__init__()
+        super(DAsnGeo, self).__init__()
         self.N_C_CA_CB_diangle = -123.2254
         self.residue_name = "n"
 
