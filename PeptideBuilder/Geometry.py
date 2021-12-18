@@ -65,6 +65,16 @@ class GlyGeo(Geo):
         self.residue_name = "G"
 
 
+class DGlyGeo(GlyGeo):
+    """Geometry of D-Glycine"""
+
+    def __init__(self):
+        super(DGlyGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+
+
 class AceGeo(GlyGeo):
     """Geometry of ACE N-terminus"""
 
@@ -112,6 +122,10 @@ class DAlaGeo(AlaGeo):
 
     def __init__(self):
         super(DAlaGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = 60.5
         self.N_C_CA_CB_diangle = -122.6860
         self.residue_name = "a"
 
@@ -158,7 +172,12 @@ class DSerGeo(SerGeo):
 
     def __init__(self):
         super(DSerGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = 60.0
         self.N_C_CA_CB_diangle = -122.6618
+        self.N_CA_CB_OG_diangle = 63.3
         self.residue_name = "s"
 
 
@@ -204,7 +223,12 @@ class DCysGeo(CysGeo):
 
     def __init__(self):
         super(DCysGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = 60.0
         self.N_C_CA_CB_diangle = -122.5037
+        self.N_CA_CB_SG_diangle = 62.2
         self.residue_name = "c"
 
 
@@ -256,7 +280,13 @@ class DValGeo(ValGeo):
 
     def __init__(self):
         super(DValGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = 60.0
         self.N_C_CA_CB_diangle = -123.2347
+        self.N_CA_CB_CG1_diangle = -177.2
+        self.N_CA_CB_CG2_diangle = 63.3
         self.residue_name = "v"
 
 
@@ -326,7 +356,14 @@ class DIleGeo(IleGeo):
 
     def __init__(self):
         super(DIleGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = 60.0
         self.N_C_CA_CB_diangle = -123.2347
+        self.N_CA_CB_CG1_diangle = -59.7
+        self.N_CA_CB_CG2_diangle = 61.6
+        self.CA_CB_CG1_CD1_diangle = -169.8
         self.residue_name = "i"
 
 
@@ -391,7 +428,14 @@ class DLeuGeo(LeuGeo):
 
     def __init__(self):
         super(DLeuGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = -120.0
         self.N_C_CA_CB_diangle = -122.4948
+        self.N_CA_CB_CG_diangle = 60.1
+        self.CA_CB_CG_CD1_diangle = -174.9
+        self.CA_CB_CG_CD2_diangle = -66.7
         self.residue_name = "l"
 
 
@@ -443,7 +487,13 @@ class DThrGeo(ThrGeo):
 
     def __init__(self):
         super(DThrGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = -120.0
         self.N_C_CA_CB_diangle = -123.0953
+        self.N_CA_CB_OG1_diangle = -60.0
+        self.N_CA_CB_CG2_diangle = 60.3
         self.residue_name = "t"
 
 
@@ -526,7 +576,17 @@ class DArgGeo(ArgGeo):
 
     def __init__(self):
         super(DArgGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = -120.0
         self.N_C_CA_CB_diangle = -122.76
+        self.N_CA_CB_CG_diangle = 65.2
+        self.CA_CB_CG_CD_diangle = 179.2
+        self.CB_CG_CD_NE_diangle = 179.3
+        self.CG_CD_NE_CZ_diangle = 178.7
+        self.CD_NE_CZ_NH1_diangle = -0.0
+        self.CD_NE_CZ_NH2_diangle = -180.0
         self.residue_name = "r"
 
 
@@ -597,7 +657,15 @@ class DLysGeo(LysGeo):
 
     def __init__(self):
         super(DLysGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = -120.0
         self.N_C_CA_CB_diangle = -122.76
+        self.N_CA_CB_CG_diangle = 64.5
+        self.CA_CB_CG_CD_diangle = 178.1
+        self.CB_CG_CD_CE_diangle = 179.6
+        self.CG_CD_CE_NZ_diangle = -179.6
         self.residue_name = "k"
 
 
@@ -658,7 +726,14 @@ class DAspGeo(AspGeo):
 
     def __init__(self):
         super(DAspGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = -120.0
         self.N_C_CA_CB_diangle = -122.82
+        self.N_CA_CB_CG_diangle = 66.4
+        self.CA_CB_CG_OD1_diangle = 46.7
+        self.CA_CB_CG_OD2_diangle = -(180 - self.CA_CB_CG_OD1_diangle)
         self.residue_name = "d"
 
 
@@ -719,7 +794,14 @@ class DAsnGeo(AsnGeo):
 
     def __init__(self):
         super(DAsnGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = 60.0
         self.N_C_CA_CB_diangle = -123.2254
+        self.N_CA_CB_CG_diangle = 65.5
+        self.CA_CB_CG_OD1_diangle = 58.3
+        self.CA_CB_CG_ND2_diangle = -(180.0 - self.CA_CB_CG_OD1_diangle)
         self.residue_name = "n"
 
 
@@ -793,7 +875,15 @@ class DGluGeo(GluGeo):
 
     def __init__(self):
         super(DGluGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = -120.0
         self.N_C_CA_CB_diangle = -122.8702
+        self.N_CA_CB_CG_diangle = 63.8
+        self.CA_CB_CG_CD_diangle = 179.8
+        self.CB_CG_CD_OE1_diangle = 6.2
+        self.CB_CG_CD_OE2_diangle = -(180.0 - self.CB_CG_CD_OE1_diangle)
         self.residue_name = "e"
 
 
@@ -867,7 +957,15 @@ class DGlnGeo(GlnGeo):
 
     def __init__(self):
         super(DGlnGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = -120.0
         self.N_C_CA_CB_diangle = -122.8134
+        self.N_CA_CB_CG_diangle = 60.2
+        self.CA_CB_CG_CD_diangle = 69.6
+        self.CB_CG_CD_OE1_diangle = 50.5
+        self.CB_CG_CD_NE2_diangle = -(180 - self.CB_CG_CD_OE1_diangle)
         self.residue_name = "q"
 
 
@@ -932,7 +1030,14 @@ class DMetGeo(MetGeo):
 
     def __init__(self):
         super(DMetGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = -120.0
         self.N_C_CA_CB_diangle = -122.6733
+        self.N_CA_CB_CG_diangle = 64.4
+        self.CA_CB_CG_SD_diangle = 179.6
+        self.CB_CG_SD_CE_diangle = -70.1
         self.residue_name = "m"
 
 
@@ -1001,7 +1106,16 @@ class DHisGeo(HisGeo):
 
     def __init__(self):
         super(DHisGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = -120.0
         self.N_C_CA_CB_diangle = -122.6711
+        self.N_CA_CB_CG_diangle = 63.2
+        self.CA_CB_CG_ND1_diangle = 75.7
+        self.CA_CB_CG_CD2_diangle = -(180.0 - self.CA_CB_CG_ND1_diangle)
+        self.CB_CG_ND1_CE1_diangle = -180.0
+        self.CB_CG_CD2_NE2_diangle = -180.0
         self.residue_name = "h"
 
 
@@ -1044,7 +1158,13 @@ class DProGeo(ProGeo):
 
     def __init__(self):
         super(DProGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = 45.0
         self.N_C_CA_CB_diangle = -115.2975
+        self.N_CA_CB_CG_diangle = -29.6
+        self.CA_CB_CG_CD_diangle = 34.8
         self.residue_name = "p"
 
 
@@ -1117,7 +1237,17 @@ class DPheGeo(PheGeo):
 
     def __init__(self):
         super(DPheGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = -120.0
         self.N_C_CA_CB_diangle = -122.6054
+        self.N_CA_CB_CG_diangle = 64.7
+        self.CA_CB_CG_CD1_diangle = -93.3
+        self.CA_CB_CG_CD2_diangle = self.CA_CB_CG_CD1_diangle + 180.0
+        self.CB_CG_CD1_CE1_diangle = -180.0
+        self.CB_CG_CD2_CE2_diangle = -180.0
+        self.CG_CD1_CE1_CZ_diangle = -0.0
         self.residue_name = "f"
 
 
@@ -1194,7 +1324,18 @@ class DTyrGeo(TyrGeo):
 
     def __init__(self):
         super(DTyrGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = -120.0
         self.N_C_CA_CB_diangle = -122.6023
+        self.N_CA_CB_CG_diangle = 64.3
+        self.CA_CB_CG_CD1_diangle = -93.1
+        self.CA_CB_CG_CD2_diangle = self.CA_CB_CG_CD1_diangle - 180.0
+        self.CB_CG_CD1_CE1_diangle = -180.0
+        self.CB_CG_CD2_CE2_diangle = -180.0
+        self.CG_CD1_CE1_CZ_diangle = -0.0
+        self.CD1_CE1_CZ_OH_diangle = -180.0
         self.residue_name = "y"
 
 
@@ -1279,7 +1420,20 @@ class DTrpGeo(TrpGeo):
 
     def __init__(self):
         super(DTrpGeo, self).__init__()
+        self.phi = 120
+        self.psi_im1 = -140
+        self.omega = -180.0
+        self.N_CA_C_O_diangle = -120.0
         self.N_C_CA_CB_diangle = -122.6112
+        self.N_CA_CB_CG_diangle = 66.4
+        self.CA_CB_CG_CD1_diangle = -96.3
+        self.CA_CB_CG_CD2_diangle = self.CA_CB_CG_CD1_diangle + 180.0
+        self.CB_CG_CD1_NE1_diangle = -180.0
+        self.CB_CG_CD2_CE2_diangle = -180.0
+        self.CB_CG_CD2_CE3_diangle = -0.0
+        self.CG_CD2_CE2_CZ2_diangle = -180.0
+        self.CG_CD2_CE3_CZ3_diangle = -180.0
+        self.CD2_CE2_CZ2_CH2_diangle = -0.0
         self.residue_name = "w"
 
 
@@ -1294,6 +1448,8 @@ def geometry(AA: str) -> Geo:
         return NmeGeo()
     elif AA == "G":
         return GlyGeo()
+    elif AA == "g":
+        return DGlyGeo()
     elif AA == "A":
         return AlaGeo()
     elif AA == "a":

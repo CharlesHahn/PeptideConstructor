@@ -2,7 +2,7 @@
 
 Still working on this:
 - [x] add D amino acids support
-- [ ] add command-line interface support
+- [x] add command-line interface support
 - [ ] add support of adding amino acids to existing protein
 - [ ] add energy minimization or conformation optimization support
 - [ ] further more, add DNA/RNA support

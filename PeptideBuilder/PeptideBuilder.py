@@ -49,6 +49,7 @@ from Geometry import (
     NmeGeo,
     geometry,
     Geo,
+    DGlyGeo,
     DAlaGeo,
     DArgGeo,
     DAsnGeo,
@@ -1216,7 +1217,7 @@ def make_res_of_type(segID: int, N, CA, C, O, geo: Geo) -> Residue:
         res = makeAce(segID, N, CA, C, O, geo)
     elif isinstance(geo, NmeGeo):
         res = makeNme(segID, N, CA, C, O, geo)
-    elif isinstance(geo, GlyGeo):
+    elif isinstance(geo, GlyGeo) or isinstance(geo, DGlyGeo):
         res = makeGly(segID, N, CA, C, O, geo)
     elif isinstance(geo, AlaGeo) or isinstance(geo, DAlaGeo):
         res = makeAla(segID, N, CA, C, O, geo)
