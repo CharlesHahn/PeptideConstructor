@@ -37,7 +37,10 @@ setup(
     platforms="Tested on Windows 10 but not fully tested",
     packages=["PeptideBuilder"],
     install_requires=INSTALL_REQUIRES,
-    extras_require={"test": TEST_REQUIRES + INSTALL_REQUIRES,},
+    extras_require={
+        "test": TEST_REQUIRES + INSTALL_REQUIRES,
+    },
+    entry_points={"console_scripts": ["PBcli = PeptideBuilder.PBcli:cmd"]},
     classifiers=[
         # Trove classifiers
         # (https://pypi.python.org/pypi?%3Aaction=list_classifiers)

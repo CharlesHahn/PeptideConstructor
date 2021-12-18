@@ -8,6 +8,10 @@ Still working on this:
 - [ ] further more, add DNA/RNA support
 
 
+Recommandation:
+1. add hydrogens : reduce
+2. structure optimization: ModRefiner
+
 This repo is based on Lun4m/PeptideBuilder.git and clauswilke/PeptideBuilder.git. Cite their original paper.
 
 **Reference:**
