@@ -2,7 +2,6 @@
 .DS_Store
 _build
 build
-dist
 *.egg-info
 *.eggs/
 *~
@@ -19,5 +18,4 @@ dist
 .vscode
 .idea
 
-PeptideBuilder/genPep.py
-PeptideBuilder/*.pdb
+PeptideConstructor/*.pdb
