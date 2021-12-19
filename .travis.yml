@@ -10,8 +10,8 @@ install:
   - pip install -e . # install package
 
 script:
-  - pylint --rcfile=setup.cfg PeptideBuilder/ # lint code
-  - mypy PeptideBuilder/ # check type annotations
+  - pylint --rcfile=setup.cfg PeptideConstructor/ # lint code
+  - mypy PeptideConstructor/ # check type annotations
   - black . --check # check formatting
   - pytest # run tests
 

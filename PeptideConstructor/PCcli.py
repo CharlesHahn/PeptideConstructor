@@ -1,10 +1,15 @@
-## author : charlie
-## date : 20211214DR
+"""This module is part of the PeptideConstructor library, written by CharlesHahn. This pacage is based on Lun4m/PeptideBuilder.git and clauswilke/PeptideBuilder.git. 
+
+This PCcli module allows you to create (DL-) peptide with different secondary structures in a simple way. And obviously, it's a CLI program.
+
+This file is provided to you under the MIT License."""
 
 import argparse
 import Bio.PDB
-import Geometry
-import PeptideBuilder
+
+# import Geometry
+# import PeptideBuilder
+from PeptideConstructor import Geometry, PeptideBuilder
 
 
 def main():
@@ -79,6 +84,17 @@ def main():
     out = Bio.PDB.PDBIO()
     out.set_structure(pep)
     out.save(args.o)
+
+    with open(args.o, "r") as fo:
+        pdb_content = fo.read()
+
+    with open(args.o, "w") as fo:
+        fo.write(
+            "USER  Sequence : {} \n".format(
+                "-".join([str(i + 1) + sequence[i] for i in range(len(sequence))])
+            )
+        )
+        fo.write(pdb_content)
 
     print(
         " ==> Peptide {} has been generated and saved in {} in current directory. \n ==> May you good day !".format(

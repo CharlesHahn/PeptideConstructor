@@ -6,8 +6,8 @@ from Bio.PDB import PDBParser
 from Bio.PDB import Superimposer
 from Bio.PDB.vectors import calc_angle, calc_dihedral
 
-from PeptideBuilder import Geometry
-import PeptideBuilder
+from PeptideConstructor import Geometry
+from PeptideConstructor import PeptideBuilder
 
 
 resdict = {
@@ -321,24 +321,21 @@ def test_PeptideBuilder(pdb_code):
     RMS_all_angles_50, RMS_all_angles_150, RMS_all_angles, size = compare_structure(
         pdb_file, make_pdb_file(structure_all_angles, "AllAngles_" + pdb_file)
     )
-    output_line = (
-        "%s\t%i\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\n"
-        % (
-            pdb_code,
-            size,
-            RMS_phi_psi_50,
-            RMS_phi_psi_150,
-            RMS_phi_psi,
-            RMS_omega_50,
-            RMS_omega_150,
-            RMS_omega,
-            RMS_all_angles_50,
-            RMS_all_angles_150,
-            RMS_all_angles,
-            RMS_backbone_50,
-            RMS_backbone_150,
-            RMS_backbone,
-        )
+    output_line = "%s\t%i\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\n" % (
+        pdb_code,
+        size,
+        RMS_phi_psi_50,
+        RMS_phi_psi_150,
+        RMS_phi_psi,
+        RMS_omega_50,
+        RMS_omega_150,
+        RMS_omega,
+        RMS_all_angles_50,
+        RMS_all_angles_150,
+        RMS_all_angles,
+        RMS_backbone_50,
+        RMS_backbone_150,
+        RMS_backbone,
     )
     return output_line
 

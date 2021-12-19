@@ -1,14 +1,9 @@
-"""This module is part of the PeptideBuilder library,
-written by Matthew Z. Tien, Dariya K. Sydykova,
-Austin G. Meyer, and Claus O. Wilke.
+"""This module is part of the PeptideConstructor library, written (improved) by CharlesHahn. This pacage is based on Lun4m/PeptideBuilder.git and clauswilke/PeptideBuilder.git. 
 
-The PeptideBuilder module contains code to generate 3D
-structures of peptides. It requires the Geometry module
-(also part of the PeptideBuilder library), which contains
-default bond lengths and angles for all amino acids.
+The PeptideBuilder module contains code to generate 3D structures of (DL-) peptides. It requires the Geometry module, which contains default bond lengths and angles for all amino acids.
 
 This module also requires the Bio.PDB module from
-Biopython, for structure manipulation.
+Biopython for structure manipulation and numpy for coordinates calculation.
 
 This file is provided to you under the MIT License."""
 
@@ -24,7 +19,7 @@ from Bio.PDB.Structure import Structure
 from Bio.PDB.vectors import Vector, rotaxis, calc_dihedral, calc_angle
 import numpy as np
 
-from Geometry import (
+from .Geometry import (
     AlaGeo,
     ArgGeo,
     AsnGeo,

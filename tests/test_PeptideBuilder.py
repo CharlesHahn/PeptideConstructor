@@ -3,8 +3,8 @@ from pathlib import Path
 from Bio.PDB.Polypeptide import PPBuilder
 from Bio.PDB import PDBParser
 
-import PeptideBuilder
-from PeptideBuilder import Geometry
+from PeptideConstructor import PeptideBuilder
+from PeptideConstructor import Geometry
 
 
 def compare_residues(r1, r2) -> bool:

@@ -1,4 +1,4 @@
-from PeptideBuilder.Geometry import (
+from PeptideConstructor.Geometry import (
     AlaGeo,
     ArgGeo,
     AsnGeo,
@@ -20,7 +20,7 @@ from PeptideBuilder.Geometry import (
     TyrGeo,
     ValGeo,
 )
-from PeptideBuilder import Geometry
+from PeptideConstructor import Geometry
 
 # test all geometries for correct parameters
 def test_geometry_A():

@@ -1,11 +1,7 @@
-"""This module is part of the PeptideBuilder library,
-written by Matthew Z. Tien, Dariya K. Sydykova,
-Austin G. Meyer, and Claus O. Wilke.
+"""This module is part of the PeptideConstructor library, written (improved) by CharlesHahn. This package is based on Lun4m/PeptideBuilder.git and clauswilke/PeptideBuilder.git. 
 
 The Geometry module contains the default geometries of
-all 20 amino acids. The main function to be used is the
-geometry() function, which returns the default geometry
-for the requested amino acid.
+all 20 L amino acids and 20 D amino acids (including mirror inverted Glycine). The main function to be used is the geometry() function, which returns the default geometry for the requested amino acid.
 
 This file is provided to you under the MIT License."""
 

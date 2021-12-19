@@ -5,8 +5,8 @@ The script generates a peptide consisting of six arginines in alpha-helix
 conformation, and it stores the peptide under the name "example.pdb".
 """
 
-from PeptideBuilder import Geometry
-import PeptideBuilder
+from PeptideConstructor import Geometry
+from PeptideConstructor import PeptideBuilder
 
 # create a peptide consisting of 6 glycines
 geo = Geometry.geometry("G")
