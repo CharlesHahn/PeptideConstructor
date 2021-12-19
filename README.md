@@ -1,4 +1,4 @@
-# DL-PeptideBuilder: A simple Python library to generate model (DL-)peptides.
+# PeptideConstructor: A simple Python library to generate model (DL-) peptides with different secondary structure.
 
 ## Still working on this:
 
