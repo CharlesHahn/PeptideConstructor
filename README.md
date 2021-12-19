@@ -9,8 +9,8 @@ Still working on this:
 
 
 Recommandation:
-1. add hydrogens : reduce
-2. structure optimization: ModRefiner
+1. add hydrogens : reduce, TINKER
+2. structure optimization: ModRefiner, TINKER/minimize
 
 This repo is based on Lun4m/PeptideBuilder.git and clauswilke/PeptideBuilder.git. Cite their original paper.
 

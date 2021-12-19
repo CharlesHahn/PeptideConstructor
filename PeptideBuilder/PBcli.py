@@ -25,8 +25,8 @@ def main():
     parser.add_argument(
         "-ss",
         default="l",
-        choices=["a", "b", "l"],
-        help="second structure. l : line, default; a : alpha helix; b : beta sheet. ",
+        choices=["a", "b", "l", "la", "lb"],
+        help="second structure. l : line, default; a : alpha helix; b : beta sheet; la : left hand helix; lb : mirror inverted beta sheet. ",
     )
     args = parser.parse_args()
 
@@ -40,32 +40,51 @@ def main():
         sequence = sequence + ["NME"]
     # print(sequence)
 
-    ## generate peptide
-    geo = Geometry.geometry(sequence[0])
-    if args.ss == "a":
-        geo.phi = -60
-        geo.psi_im1 = -40
-    elif args.ss == "b":
-        geo.phi = -140
-        geo.psi_im1 = 130
-    pep = PeptideBuilder.initialize_res(geo)
-    for aa in sequence[1:]:
-        geo = Geometry.geometry(aa)
+    ## generate geometry for each AA
+    geo_list = []
+    for a_i in range(len(sequence)):
+        geo = Geometry.geometry(sequence[a_i])
+
         if args.ss == "a":
             geo.phi = -60
-            geo.psi_im1 = -40
+            geo.psi_im1 = -50
+        elif args.ss == "la":
+            geo.phi = 60
+            geo.psi_im1 = 50
         elif args.ss == "b":
             geo.phi = -140
             geo.psi_im1 = 130
-        PeptideBuilder.add_residue(pep, geo)
+        elif args.ss == "lb":
+            geo.phi = 140
+            geo.psi_im1 = -130
+
+        geo_list.append(geo)
+
+    ## reminds about Proline
+    if (args.ss == "a" or args.ss == "la") and ("P" in sequence or "p" in sequence):
+        print(
+            "\n=== Warning : Appling Alpha Helix to Proline or D-Proline may cause coordinates conflicts. Structure Repair or Energy Minimization may be needed ! ===\n"
+        )
+
+    ## generate peptide
+    pep = PeptideBuilder.initialize_res(geo_list[0])
+    for geo_i in range(1, len(geo_list)):
+        PeptideBuilder.add_residue(pep, geo_list[geo_i])
+
+    ## add OXT if needed
     if args.cap == 0 or args.cap == 2:
         PeptideBuilder.add_terminal_OXT(pep)
 
+    ## generate pdb file
     out = Bio.PDB.PDBIO()
     out.set_structure(pep)
     out.save(args.o)
 
-    print('"=== May you good day ! ==="')
+    print(
+        " ==> Peptide {} has been generated and saved in {} in current directory. \n ==> May you good day !".format(
+            "-".join([str(i + 1) + sequence[i] for i in range(len(sequence))]), args.o
+        )
+    )
 
 
 if __name__ == "__main__":
