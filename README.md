@@ -11,10 +11,16 @@
 
 ## Installation
 
-You can install PeptideConstructor with pip:
+You can easily install PeptideConstructor with pip:
 
 ```
 pip install PeptideConstructor
+```
+
+or download the wheel file in dist/ directory and install it like below:
+
+```
+pip install PeptideConstructor-0.2.0-py3-none-any.whl
 ```
 
 PeptideBuilder has two required dependency: 
@@ -34,7 +40,24 @@ which will generage a test.pdb file in current directory which contains a peptid
 
 Also, secondary structure and capping of peptide could be applied through `PCcli`.
 
-Sure you could generage peptide in original way by writing codes. see [PeptideBuilder](https://github.com/clauswilke/PeptideBuilder) for more infomation.
+```
+PCcli -s AaDdKSQym -o test.pdb -ss a -cap 1
+```
+
+**parameters** : 
+
+- `-s` : peptide sequence. Uppercases indicate L amino acids while lowercases indicate D amino acids.
+- `-o` : output PDB file name.
+- `-ss` : (optional) secondary structure you want, `l` for no secondary structure assignment (default), `a` for alpha helix, `b` for beta sheet, `la` for left hand helix and `lb` for mirror inverted beta sheet.
+- `-cap` : (optional) cappings, `0` for no cappings (default), `1` for cappings (`ACE` in the N terminal and `NME` in the C terminal), `2` for only adding `ACE` to the N termial and `3` for only adding `NME` in the C terminal. 
+
+**examples** : 
+
+Sure you could generage peptide in original way by writing codes.
+
+check examples/ directory for more examples of generating peptide by code.
+
+ see [PeptideBuilder](https://github.com/clauswilke/PeptideBuilder) for more infomation.
 
 
 ## Post-processing Tools Recommandation:
