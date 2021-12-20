@@ -34,7 +34,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/CharlesHahn/PeptideConstructor",
     download_url="https://github.com/CharlesHahn/PeptideConstructor/releases",
-    platforms="Tested on Windows 10 but not fully tested",
+    platforms="cross-platform",
     packages=["PeptideConstructor"],
     install_requires=INSTALL_REQUIRES,
     extras_require={

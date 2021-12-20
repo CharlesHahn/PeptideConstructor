@@ -15,13 +15,24 @@ from Bio.PDB.Structure import Structure
 from PeptideConstructor import Geometry, PeptideBuilder
 
 
-def seq2pep(sequence: str, cap: int, ss: str) -> Tuple[Structure, list]:
+def seq2pep(sequence: str, cap: int = 0, ss: str = "l") -> Tuple[Structure, list]:
     """
     An simple function to convert sequence into 3D peptide
 
-    :sequence : peptide sequence. one letter represent an amino acid. Uppercase is L amino acids and lowercase is D amino acid.
-    :cap : whether to add capping. 0 : default, no capping; 1 : capping; 2 : only add ACE capping to the beginning; 3 : only add NME capping to the end.
-    :ss : apply secondary structure. a : alpha helix; b : beta sheet; la : left hand helix; lb : mirror inverted beta sheet.
+    - sequence : peptide sequence. one letter represent an amino acid. Uppercase is L amino acids and lowercase is D amino acid.
+
+    - cap : whether to add capping
+            0 : default, no capping
+            1 : capping
+            2 : only add ACE capping to the beginning
+            3 : only add NME capping to the end
+
+    - ss : apply secondary structure
+            l : default, linear
+            a : alpha helix
+            b : beta sheet
+            la : left hand helix
+            lb : mirror inverted beta sheet.
 
     return : pep : a peptide structure (class of Biopython); seq : list of AA
     """

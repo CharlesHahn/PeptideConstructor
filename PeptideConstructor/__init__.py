@@ -5,7 +5,9 @@ Python modules
 The package consists of the following Python modules:
 * PeptideBuilder
 * Geometry
+* PCcli
 """
-__version__ = "0.2.0"
+
+__version__ = "0.2.1"
 from .PeptideBuilder import *
 from .Geometry import *
